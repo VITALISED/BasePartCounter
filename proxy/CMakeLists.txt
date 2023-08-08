@@ -7,5 +7,5 @@ add_library(ThaumiumProxy SHARED
 target_precompile_headers(ThaumiumProxy PRIVATE pch.h)
 
 set_target_properties(ThaumiumProxy PROPERTIES
-                      OUTPUT_NAME version
+                      OUTPUT_NAME ProfanityFilter_x64_v120
 )

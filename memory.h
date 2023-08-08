@@ -4,9 +4,9 @@
 #include <iostream>
 #include <vector>
 
-#define _BASE (uintptr_t)GetModuleHandleA("NMS.exe")
+#define _BASE (uintptr_t)GetModuleHandleA(NULL)
 #define OFFSET(offset) (LPVOID)(_BASE + (uintptr_t)offset)
-#define SIGSCAN(pattern) (LPVOID)(Memory::ScanPattern(Memory::IdaPatternToByte(#pattern)))
+#define SIGSCAN(pattern) (LPVOID)(Memory::ScanPattern(Memory::IdaPatternToByte(pattern)))
 
 #define JUMPIMM(addr) (__asm(jmp, addr))
 
@@ -18,7 +18,7 @@
 
 namespace Memory
 {
-	void PatchBytes(uintptr_t ptr, const char* sig);
-	std::vector<uint8_t> IdaPatternToByte(const char* sig);
-	uintptr_t ScanPattern(std::vector<uint8_t> bytes);
+	void PatchBytes(uintptr_t ptr, uint8_t bytes[]);
+	std::vector<int> IdaPatternToByte(const char* sig);
+	uintptr_t ScanPattern(std::vector<int> bytes);
 }
